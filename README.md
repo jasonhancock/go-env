@@ -1,6 +1,6 @@
 # go-env
 
-This is a fork of [github.com/graymeta/env)(https://github.com/graymeta/env)
+This is a fork of [github.com/graymeta/env](https://github.com/graymeta/env)
 
 [![GoDoc](https://godoc.org/github.com/jasonhancock/go-env?status.svg)](https://godoc.org/github.com/jasonhancock/go-env)
 
