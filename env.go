@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-// GetenvWithDefault returns a value from an environment variable defined by
+// String returns a value from an environment variable defined by
 // key. If key isn't set in the environment, returns defaultValue
-func GetenvWithDefault(key string, defaultValue string) string {
+func String(key string, defaultValue string) string {
 	vars := os.Environ()
 
 	for _, v := range vars {
@@ -21,9 +21,9 @@ func GetenvWithDefault(key string, defaultValue string) string {
 	return defaultValue
 }
 
-// GetenvBoolWithDefault returns a value from an environment variable defined by
+// Bool returns a value from an environment variable defined by
 // key. If key isn't set in the environment, returns defaultValue
-func GetenvBoolWithDefault(key string, defaultValue bool) bool {
+func Bool(key string, defaultValue bool) bool {
 	vars := os.Environ()
 
 	for _, v := range vars {
@@ -39,10 +39,10 @@ func GetenvBoolWithDefault(key string, defaultValue bool) bool {
 	return defaultValue
 }
 
-// GetenvIntWithDefault returns a value from an environment variable defined by
+// Int returns a value from an environment variable defined by
 // key. If key isn't set in the environment, or doesn't parse as an int,
 // returns defaultValue
-func GetenvIntWithDefault(key string, defaultValue int) int {
+func Int(key string, defaultValue int) int {
 	vars := os.Environ()
 
 	for _, v := range vars {
@@ -58,10 +58,10 @@ func GetenvIntWithDefault(key string, defaultValue int) int {
 	return defaultValue
 }
 
-// GetenvDurationWithDefault returns a value from an environment variable defined by
+// Duration returns a value from an environment variable defined by
 // key. If key isn't set in the environment, or doesn't parse as a time.Duration,
 // returns defaultValue
-func GetenvDurationWithDefault(key string, defaultValue time.Duration) time.Duration {
+func Duration(key string, defaultValue time.Duration) time.Duration {
 	vars := os.Environ()
 
 	for _, v := range vars {
@@ -77,10 +77,10 @@ func GetenvDurationWithDefault(key string, defaultValue time.Duration) time.Dura
 	return defaultValue
 }
 
-// GetenvFloat64WithDefault returns a value from an environment variable defined by
+// Float64 returns a value from an environment variable defined by
 // key. If key isn't set in the environment, or doesn't parse as a float64,
 // returns defaultValue
-func GetenvFloat64WithDefault(key string, defaultValue float64) float64 {
+func Float64(key string, defaultValue float64) float64 {
 	vars := os.Environ()
 
 	for _, v := range vars {

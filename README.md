@@ -1,9 +1,11 @@
-[![GoDoc](https://godoc.org/github.com/graymeta/env?status.svg)](https://godoc.org/github.com/graymeta/env)
-[![Go Report Card](https://goreportcard.com/badge/github.com/graymeta/stow)](https://goreportcard.com/report/github.com/graymeta/env)
-[![Build Status](https://travis-ci.org/graymeta/env.svg?branch=master)](https://travis-ci.org/graymeta/env)
+# go-env
+
+This is a fork of [github.com/graymeta/env)(https://github.com/graymeta/env)
+
+[![GoDoc](https://godoc.org/github.com/jasonhancock/go-env?status.svg)](https://godoc.org/github.com/jasonhancock/go-env)
 
 Environment Variable Parsing with Default Values
 
-```
-go get github.com/graymeta/env
+```shell
+go get github.com/jasonhancock/go-env
 ```

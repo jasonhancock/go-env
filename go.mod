@@ -1,3 +1,14 @@
-module github.com/graymeta/env
+module github.com/jasonhancock/go-env
 
-require github.com/stretchr/testify v1.4.0
+go 1.17
+
+require github.com/stretchr/testify v1.7.1
+
+require (
+	github.com/davecgh/go-spew v1.1.0 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/stretchr/objx v0.1.0 // indirect
+	gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 // indirect
+	gopkg.in/yaml.v2 v2.2.2 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
+)
