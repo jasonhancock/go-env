@@ -58,6 +58,25 @@ func Int(key string, defaultValue int) int {
 	return defaultValue
 }
 
+// Int64 returns a value from an environment variable defined by
+// key. If key isn't set in the environment, or doesn't parse as an int64,
+// returns defaultValue
+func Int64(key string, defaultValue int64) int64 {
+	vars := os.Environ()
+
+	for _, v := range vars {
+		pieces := strings.SplitN(v, "=", 2)
+		if pieces[0] == key {
+			val, err := strconv.ParseInt(pieces[1], 10, 64)
+			if err != nil {
+				return defaultValue
+			}
+			return val
+		}
+	}
+	return defaultValue
+}
+
 // Duration returns a value from an environment variable defined by
 // key. If key isn't set in the environment, or doesn't parse as a time.Duration,
 // returns defaultValue
