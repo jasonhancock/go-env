@@ -9,27 +9,25 @@ import (
 )
 
 func TestString(t *testing.T) {
-	val := os.Getenv("env_test_key")
-	require.Equal(t, "", val)
+	const key = "env_test_key"
+	t.Cleanup(func() { os.Unsetenv(key) })
+	require.Equal(t, "", os.Getenv("key"))
 
-	val = String("env_test_key", "1234")
-	require.Equal(t, "1234", "1234", val)
+	require.Equal(t, "1234", String(key, "1234"))
 
 	os.Setenv("env_test_key", "3456")
-	val = String("env_test_key", "1234")
-	require.Equal(t, "3456", val)
+	require.Equal(t, "3456", String(key, "1234"))
 
 	// explicitly set to empty string
 	os.Setenv("env_test_key", "")
-	val = String("env_test_key", "1234")
-	require.Equal(t, "", val)
+	require.Equal(t, "", String(key, "1234"))
 }
 
 func TestBool(t *testing.T) {
-	key := "env_bool_test_key"
+	const key = "env_bool_test_key"
+	t.Cleanup(func() { os.Unsetenv(key) })
 
-	check := os.Getenv(key)
-	require.Equal(t, "", check)
+	require.Equal(t, "", os.Getenv(key))
 
 	require.True(t, Bool(key, true))
 
@@ -54,59 +52,68 @@ func TestBool(t *testing.T) {
 }
 
 func TestInt(t *testing.T) {
-	key := "env_int_test_key"
+	const key = "env_int_test_key"
+	t.Cleanup(func() { os.Unsetenv(key) })
 
-	check := os.Getenv(key)
-	require.Equal(t, "", check)
+	require.Equal(t, "", os.Getenv(key))
 
-	val := Int(key, 1234)
-	require.Equal(t, 1234, val)
+	require.Equal(t, 1234, Int(key, 1234))
 
 	os.Setenv(key, "3456")
-	val = Int(key, 1234)
-	require.Equal(t, 3456, val)
+	require.Equal(t, 3456, Int(key, 1234))
 
 	// explicitly set to empty string
 	os.Setenv(key, "")
-	val = Int(key, 1234)
-	require.Equal(t, 1234, val)
+	require.Equal(t, 1234, Int(key, 1234))
+
+}
+
+func TestInt64(t *testing.T) {
+	const key = "env_int64_test_key"
+	t.Cleanup(func() { os.Unsetenv(key) })
+
+	require.Equal(t, "", os.Getenv(key))
+
+	require.Equal(t, int64(9223372036854775807), Int64(key, 9223372036854775807))
+
+	os.Setenv(key, "3456")
+	require.Equal(t, int64(3456), Int64(key, 9223372036854775807))
+
+	// explicitly set to empty string
+	os.Setenv(key, "")
+	require.Equal(t, int64(9223372036854775807), Int64(key, 9223372036854775807))
 }
 
 func TestDuration(t *testing.T) {
-	key := "env_duration_test_key"
+	const key = "env_duration_test_key"
+	t.Cleanup(func() { os.Unsetenv(key) })
+
 	defaultValue := 300 * time.Second
 
-	check := os.Getenv(key)
-	require.Equal(t, "", check)
+	require.Equal(t, "", os.Getenv(key))
 
-	val := Duration(key, defaultValue)
-	require.Equal(t, 300.0, val.Seconds())
+	require.Equal(t, 300.0, Duration(key, defaultValue).Seconds())
 
 	os.Setenv(key, "600s")
-	val = Duration(key, defaultValue)
-	require.Equal(t, 600.0, val.Seconds())
+	require.Equal(t, 600.0, Duration(key, defaultValue).Seconds())
 
 	// explicitly set to empty string
 	os.Setenv(key, "")
-	val = Duration(key, defaultValue)
-	require.Equal(t, 300.0, val.Seconds())
+	require.Equal(t, 300.0, Duration(key, defaultValue).Seconds())
 }
 
 func TestFloat64(t *testing.T) {
-	key := "env_float64_test_key"
+	const key = "env_float64_test_key"
+	t.Cleanup(func() { os.Unsetenv(key) })
 
-	check := os.Getenv(key)
-	require.Equal(t, "", check)
+	require.Equal(t, "", os.Getenv(key))
 
-	val := Float64(key, 123.4)
-	require.Equal(t, 123.4, val)
+	require.Equal(t, 123.4, Float64(key, 123.4))
 
 	os.Setenv(key, "345.6")
-	val = Float64(key, 123.4)
-	require.Equal(t, 345.6, val)
+	require.Equal(t, 345.6, Float64(key, 123.4))
 
 	// explicitly set to empty string
 	os.Setenv(key, "")
-	val = Float64(key, 123.4)
-	require.Equal(t, 123.4, val)
+	require.Equal(t, 123.4, Float64(key, 123.4))
 }
