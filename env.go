@@ -58,6 +58,63 @@ func Int(key string, defaultValue int) int {
 	return defaultValue
 }
 
+// Int8 returns a value from an environment variable defined by
+// key. If key isn't set in the environment, or doesn't parse as an int8,
+// returns defaultValue
+func Int8(key string, defaultValue int8) int8 {
+	vars := os.Environ()
+
+	for _, v := range vars {
+		pieces := strings.SplitN(v, "=", 2)
+		if pieces[0] == key {
+			val, err := strconv.ParseUint(pieces[1], 10, 8)
+			if err != nil {
+				return defaultValue
+			}
+			return int8(val)
+		}
+	}
+	return defaultValue
+}
+
+// Int16 returns a value from an environment variable defined by
+// key. If key isn't set in the environment, or doesn't parse as an int16,
+// returns defaultValue
+func Int16(key string, defaultValue int16) int16 {
+	vars := os.Environ()
+
+	for _, v := range vars {
+		pieces := strings.SplitN(v, "=", 2)
+		if pieces[0] == key {
+			val, err := strconv.ParseUint(pieces[1], 10, 16)
+			if err != nil {
+				return defaultValue
+			}
+			return int16(val)
+		}
+	}
+	return defaultValue
+}
+
+// Int32 returns a value from an environment variable defined by
+// key. If key isn't set in the environment, or doesn't parse as an int32,
+// returns defaultValue
+func Int32(key string, defaultValue int32) int32 {
+	vars := os.Environ()
+
+	for _, v := range vars {
+		pieces := strings.SplitN(v, "=", 2)
+		if pieces[0] == key {
+			val, err := strconv.ParseUint(pieces[1], 10, 32)
+			if err != nil {
+				return defaultValue
+			}
+			return int32(val)
+		}
+	}
+	return defaultValue
+}
+
 // Int64 returns a value from an environment variable defined by
 // key. If key isn't set in the environment, or doesn't parse as an int64,
 // returns defaultValue
@@ -96,6 +153,25 @@ func Duration(key string, defaultValue time.Duration) time.Duration {
 	return defaultValue
 }
 
+// Float32 returns a value from an environment variable defined by
+// key. If key isn't set in the environment, or doesn't parse as a float32,
+// returns defaultValue
+func Float32(key string, defaultValue float32) float32 {
+	vars := os.Environ()
+
+	for _, v := range vars {
+		pieces := strings.SplitN(v, "=", 2)
+		if pieces[0] == key {
+			val, err := strconv.ParseFloat(pieces[1], 32)
+			if err != nil {
+				return defaultValue
+			}
+			return float32(val)
+		}
+	}
+	return defaultValue
+}
+
 // Float64 returns a value from an environment variable defined by
 // key. If key isn't set in the environment, or doesn't parse as a float64,
 // returns defaultValue
@@ -110,6 +186,25 @@ func Float64(key string, defaultValue float64) float64 {
 				return defaultValue
 			}
 			return val
+		}
+	}
+	return defaultValue
+}
+
+// Uint returns a value from an environment variable defined by
+// key. If key isn't set in the environment, or doesn't parse as an uint8,
+// returns defaultValue
+func Uint(key string, defaultValue uint) uint {
+	vars := os.Environ()
+
+	for _, v := range vars {
+		pieces := strings.SplitN(v, "=", 2)
+		if pieces[0] == key {
+			val, err := strconv.ParseUint(pieces[1], 10, strconv.IntSize)
+			if err != nil {
+				return defaultValue
+			}
+			return uint(val)
 		}
 	}
 	return defaultValue
